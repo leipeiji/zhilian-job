@@ -1,15 +1,10 @@
-from dengfenglai.config import *
-import json
 import os
 import requests
-from requests.exceptions import ConnectionError
 from bs4 import BeautifulSoup as bf
-import re
 import time
 from multiprocessing import Pool
 from openpyxl import Workbook
 import datetime
-from openpyxl import load_workbook
 import pandas as pd
 import math
 
@@ -23,7 +18,7 @@ def getZhilianInfo(city, kw,p=1,isGetPage=False,RequestsUrl='http://sou.zhaopin.
                  'sg': '5768330709424ce580218125482810e8',
                  'p': p,
                  }
-        headers = {'user-agent': UA,
+        headers = {'user-agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1",
                    'Host':'sou.zhaopin.com',
                    'Upgrade-Insecure-Requests':'1',
                    'Connection':'keep-alive',
@@ -243,7 +238,7 @@ def GetFailPage(FindPath, FlagStr=[]):
                     # print(page,basename)
                     pageList.append(int(page))
     return pageList
-
+#  合并所有页码到一个文件 
 def combineEveryPageInfoToOneV2(FindPath,outPath):
     try:
         FlagStr = ['xlsx']
